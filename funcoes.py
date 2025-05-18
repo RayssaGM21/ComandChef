@@ -1,4 +1,5 @@
 from entidades import Cliente, Prato, Pedido
+import time
 
 clientes = [
     {"id": 1, "nome": "Matheus", "pedidos": []},
@@ -129,5 +130,46 @@ def listar_Pratos():
         ingredientes_str = ", ".join(c["ingredientes"])
         print(f"║ {str(c['id']):<4} ║ {c['nome']:<40} ║ R$ {float(c['preco']):<7.2f} ║ {ingredientes_str:<85} ║")
     print("╚══════╩══════════════════════════════════════════╩════════════╩═══════════════════════════════════════════════════════════════════════════════════════╝")
+
+
+def menu_Principal():
+    i = True
+    while i != False:
+        print("Bem vindo ao ComandChef. O seu restaurante preferido!!")
+        time.sleep(2)
+        print("""
+                ======= MENU =======
+                1 - Cadastrar Cliente
+                2 - Cadastrar Prato
+                3 - Listar Pratos
+                4 - Listar Clientes
+                5 - Remover Prato
+                6 - Fazer pedido
+                7 - Sair
+                ====================
+                                    """)
+        print(" ")
+        escolha = input ("Digite a opção desejada: ")
+        
+        if escolha == "1":
+            cadastrar_Cliente()
+
+        elif escolha == "2":
+            cadastrar_Prato()
+
+        elif escolha == "3":
+            listar_Pratos()
+
+        elif escolha == "4":
+            listar_Clientes()
+
+        elif escolha == "5":
+            remover_Prato()
+
+        elif escolha == "6":
+            fazer_Pedido()
+
+        elif escolha == "7":
+            i = False
 
 

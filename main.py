@@ -1,4 +1,5 @@
 from funcoes import cadastrar_Pedido
+from funcoes import menu_Principal
 
 # cadastrar_Cliente(clientes)
 
@@ -8,4 +9,6 @@ from funcoes import cadastrar_Pedido
 
 # print(pratos)
 
-cadastrar_Pedido()
+#cadastrar_Pedido()
+
+menu_Principal()
