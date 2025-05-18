@@ -1,13 +1,11 @@
-from funcoes import *
+from funcoes import cadastrar_Pedido
 
-clientes = []
-pratos = []
-pedidos = []
+# cadastrar_Cliente(clientes)
 
-cadastrar_Cliente(clientes)
+# print(clientes)
 
-print(clientes)
+# cadastrar_Prato(pratos)
 
-cadastrar_Prato(pratos)
+# print(pratos)
 
-print(pratos)
+cadastrar_Pedido()

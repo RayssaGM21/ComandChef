@@ -1,6 +1,47 @@
 from entidades import Cliente, Prato, Pedido
 
-def cadastrar_Cliente(clientes):
+clientes = [
+    {"id": 1, "nome": "Matheus", "pedidos": []},
+    {"id": 2, "nome": "Rayssa", "pedidos": []},
+    {"id": 3, "nome": "Rodrigo", "pedidos": []}
+]
+
+pratos = [
+    {
+        "id": 1,
+        "nome": "Espaguete ao Alho e Óleo",
+        "preco": 22.50,
+        "ingredientes": ("macarrão", "alho", "azeite", "salsinha")
+    },
+    {
+        "id": 2,
+        "nome": "Frango Xadrez",
+        "preco": 29.90,
+        "ingredientes": ("frango", "pimentão", "cebola", "molho shoyu", "amendoim")
+    },
+    {
+        "id": 3,
+        "nome": "Pizza Margherita",
+        "preco": 34.00,
+        "ingredientes": ("massa", "molho de tomate", "muçarela", "manjericão")
+    },
+    {
+        "id": 4,
+        "nome": "Risoto de Cogumelos",
+        "preco": 100.80,
+        "ingredientes": ("arroz arbório", "champignon", "parmesão", "cebola", "creme de leite")
+    },
+    {
+        "id": 19,
+        "nome": "Hambúrguer Artesanal",
+        "preco": 27.50,
+        "ingredientes": ("pão brioche", "carne angus", "queijo cheddar", "alface", "tomate", "maionese caseira")
+    }
+]
+pedidos = []
+
+
+def cadastrar_Cliente():
     nome = input("Nome do Cliente: ")
     cliente = Cliente(nome)
     clientes.append({
@@ -9,7 +50,7 @@ def cadastrar_Cliente(clientes):
         "pedidos": cliente.pedidos
     })
 
-def cadastrar_Prato(pratos):
+def cadastrar_Prato():
     nome = input("Nome do Prato: ")
     preco = input("Preço: ")
     print("Digite os ingredientes, quando acabar digite 'Sair'")
@@ -34,3 +75,59 @@ def cadastrar_Prato(pratos):
             "ingredientes": prato.ingredientes
         }
     )
+
+def cadastrar_Pedido():
+    print("Escolha um cliente para fazer este pedido")
+    listar_Clientes()
+
+    idCliente = input("Id: ")
+    print("Escolha os Pratos do Pedido - Digite 'Sair' para finalizar")
+
+    idPrato = ""
+    escolhidos = []
+
+    while idPrato.lower() != "sair":
+        listar_Pratos()
+        idPrato = input("Id: ")
+
+        if idPrato.lower() != "sair":
+            for i in pratos:
+                if i['id'] == int(idPrato):
+                    escolhidos.append({
+                        "nome": i['nome'],
+                        "preco": i["preco"]
+                    })
+
+    cliente = None
+    for i in clientes:
+        if i["id"] == int(idCliente):
+            cliente = Cliente(i["nome"])
+
+    pedido = Pedido(cliente, escolhidos)
+    pedidos.append({
+        "id": pedido.id,
+        "cliente": pedido.cliente.nome,
+        "pratos": pedido.pratos
+    })
+
+    print(pedidos)
+
+
+def listar_Clientes():
+    print("╔════╦════════════════════════╗")
+    print("║ ID ║ Nome                   ║")
+    print("╠════╬════════════════════════╣")
+    for c in clientes:
+        print(f"║ {c['id']:<2} ║ {c['nome']:<22} ║")
+    print("╚════╩════════════════════════╝")
+
+def listar_Pratos():
+    print("╔══════╦══════════════════════════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
+    print("║ ID   ║ Nome                                     ║ Preço      ║ Ingredientes                                                                          ║")
+    print("╠══════╬══════════════════════════════════════════╬════════════╬═══════════════════════════════════════════════════════════════════════════════════════╣")
+    for c in pratos:
+        ingredientes_str = ", ".join(c["ingredientes"])
+        print(f"║ {str(c['id']):<4} ║ {c['nome']:<40} ║ R$ {float(c['preco']):<7.2f} ║ {ingredientes_str:<85} ║")
+    print("╚══════╩══════════════════════════════════════════╩════════════╩═══════════════════════════════════════════════════════════════════════════════════════╝")
+
+
