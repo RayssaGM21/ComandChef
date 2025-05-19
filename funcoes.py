@@ -1,4 +1,5 @@
 from entidades import Cliente, Prato, Pedido
+from collections import deque
 import time
 
 clientes = [
@@ -39,8 +40,7 @@ pratos = [
         "ingredientes": ("pão brioche", "carne angus", "queijo cheddar", "alface", "tomate", "maionese caseira")
     }
 ]
-pedidos = []
-
+fila_pedidos = deque()
 
 def cadastrar_Cliente():
     nome = input("Nome do Cliente: ")
@@ -105,13 +105,14 @@ def cadastrar_Pedido():
             cliente = Cliente(i["nome"])
 
     pedido = Pedido(cliente, escolhidos)
-    pedidos.append({
-        "id": pedido.id,
-        "cliente": pedido.cliente.nome,
-        "pratos": pedido.pratos
-    })
+    fila_pedidos.append(pedido)
 
-    print(pedidos)
+    print("Pedido feito com sucesso!")
+    posicao = list(fila_pedidos).index(pedido)
+    if fila_pedidos.count == 1:
+        print("Há 0 Pedidos na frente, logo poderá ser retirado!")
+    else:
+        print(f"Há {posicao} Pedidos na frete, aguarde e logo poderá ser retirado.")
 
 
 def listar_Clientes():
@@ -131,6 +132,16 @@ def listar_Pratos():
         print(f"║ {str(c['id']):<4} ║ {c['nome']:<40} ║ R$ {float(c['preco']):<7.2f} ║ {ingredientes_str:<85} ║")
     print("╚══════╩══════════════════════════════════════════╩════════════╩═══════════════════════════════════════════════════════════════════════════════════════╝")
 
+def retirar_proximo_pedido():
+    pedido = fila_pedidos.popleft()
+    print("╔════════════════════════════════════════════════╗")
+    print("║               Pedido retirado!                 ║")
+    print("╚════════════════════════════════════════════════╝")
+    print("╔══════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
+    print("║ Nome                 ║ Preço      ║ Pratos                                                                                ║")
+    print("╠══════════════════════║════════════║═══════════════════════════════════════════════════════════════════════════════════════╣")
+    print(f"║{pedido.cliente.nome:<22}║R${pedido.valor_total:<13}║{pedido.pratos:<50}║")
+    print("╚═════")
 
 def menu_Principal():
     i = True
@@ -145,7 +156,10 @@ def menu_Principal():
                 4 - Listar Clientes
                 5 - Remover Prato
                 6 - Fazer pedido
-                7 - Sair
+                7 - Retirar próximo Pedido
+                8 - Null
+                9 - Null 
+                10 - Sair
                 ====================
                                     """)
         print(" ")
@@ -167,9 +181,11 @@ def menu_Principal():
             remover_Prato()
 
         elif escolha == "6":
-            fazer_Pedido()
-
+            cadastrar_Pedido()
         elif escolha == "7":
+            retirar_proximo_pedido()
+
+        elif escolha == "10":
             i = False
 
 

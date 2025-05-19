@@ -17,6 +17,10 @@ class Pedido:
         self.id = Pedido.contador_id
         self.cliente = cliente
         self.pratos = pratos
+        self.valor_total = self.calcular_total()
+
+    def calcular_total(self):
+        return sum(p["preco"] for p in self.pratos)
 
 class Prato:
     contador_id = 0
