@@ -134,14 +134,15 @@ def listar_Pratos():
 
 def retirar_proximo_pedido():
     pedido = fila_pedidos.popleft()
+    pratos_string = ', '.join([p["nome"] for p in pedido.pratos])
     print("╔════════════════════════════════════════════════╗")
     print("║               Pedido retirado!                 ║")
     print("╚════════════════════════════════════════════════╝")
     print("╔══════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
     print("║ Nome                 ║ Preço      ║ Pratos                                                                                ║")
     print("╠══════════════════════║════════════║═══════════════════════════════════════════════════════════════════════════════════════╣")
-    print(f"║{pedido.cliente.nome:<22}║R${pedido.valor_total:<13}║{pedido.pratos:<50}║")
-    print("╚═════")
+    print(f"║ {pedido.cliente.nome:<21}║ R${pedido.valor_total:<9}║ {pratos_string:<90} ║")
+    print("╚══════════════════════╩════════════╩════════════════════════════════════════╝")
 
 def menu_Principal():
     i = True
