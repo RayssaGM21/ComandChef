@@ -43,6 +43,7 @@ pratos = [
 fila_pedidos = deque()
 
 def cadastrar_Cliente():
+    atulizar_contador_cliente()
     nome = input("Nome do Cliente: ")
     cliente = Cliente(nome)
     clientes.append({
@@ -51,7 +52,18 @@ def cadastrar_Cliente():
         "pedidos": cliente.pedidos
     })
 
+def atulizar_contador_cliente():
+    if clientes:
+        maior_id = max(i["id"] for i in clientes)
+        Cliente.contador_id = maior_id
+
+def atualizar_contador_prato():
+    if pratos:
+        maior_id = max(i["id"] for i in pratos)
+        Prato.contador_id = maior_id
+
 def cadastrar_Prato():
+    atualizar_contador_prato()
     nome = input("Nome do Prato: ")
     preco = input("Preço: ")
     print("Digite os ingredientes, quando acabar digite 'Sair'")
