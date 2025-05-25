@@ -6,3 +6,9 @@ class Cliente:
         self.id = Cliente.contador_id
         self.nome = nome
         self.pedidos = []
+        
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "nome": self.nome,
+        }

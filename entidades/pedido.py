@@ -12,3 +12,11 @@ class Pedido:
 
     def calcular_total(self):
         return sum(p["preco"] for p in self.pratos)
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "cliente": self.cliente.to_dict(),
+            "pratos": self.pratos,
+            "valor_total": self.valor_total
+        }
