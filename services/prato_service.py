@@ -32,7 +32,7 @@ def cadastrar_prato():
             
     print("Digite os ingredientes, quando acabar digite 'Sair'")
 
-    ingredientes = []
+    ingredientes = set()
     while True:
             ingrediente = input(":").strip()
             if ingrediente.lower() == "sair":
@@ -40,7 +40,7 @@ def cadastrar_prato():
             if ingrediente == "":
                 print("O nome do ingrediente não pode ser vazio.")
                 continue
-            ingredientes.append(ingrediente)
+            ingredientes.add(ingrediente)
 
     
     ingredientes = tuple(ingredientes)
@@ -73,11 +73,23 @@ def buscar_prato_por_id(id_prato: int):
 
 
 def remover_prato():
-    id_prato = int(input("Digite o ID do prato que deseja remover: "))
+    id_prato = input("Digite o ID do prato que deseja remover: ").strip()
+    global pratos
+
     try:
-        global pratos
+        id_prato = int(id_prato)
+    except ValueError:
+        print("ID inválido! Por favor, insira um número válido.")
+        return
+    
+    prato_existente = None
+    for prato in pratos:
+        if prato["id"] == id_prato:
+            prato_existente = prato
+            break
+
+    if prato_existente is None:
+        print(f"Não existe prato com o ID {id_prato}.")
+    else:
         pratos = [p for p in pratos if p["id"] != id_prato]
         print(f"Prato com ID {id_prato} removido com sucesso!")
-    except ValueError:
-        print(f"Não foi possível remover o prato com ID {id_prato}\nID digitado inválido!")
-    
