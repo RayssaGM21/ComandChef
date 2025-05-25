@@ -1,0 +1,14 @@
+# Bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Python distribution
+dist/
+build/
+*.egg-info/

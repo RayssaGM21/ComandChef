@@ -2,190 +2,153 @@ from entidades import Cliente, Prato, Pedido
 from collections import deque
 import time
 
-clientes = [
-    {"id": 1, "nome": "Matheus", "pedidos": []},
-    {"id": 2, "nome": "Rayssa", "pedidos": []},
-    {"id": 3, "nome": "Rodrigo", "pedidos": []}
-]
 
-pratos = [
-    {
-        "id": 1,
-        "nome": "Espaguete ao Alho e Óleo",
-        "preco": 22.50,
-        "ingredientes": ("macarrão", "alho", "azeite", "salsinha")
-    },
-    {
-        "id": 2,
-        "nome": "Frango Xadrez",
-        "preco": 29.90,
-        "ingredientes": ("frango", "pimentão", "cebola", "molho shoyu", "amendoim")
-    },
-    {
-        "id": 3,
-        "nome": "Pizza Margherita",
-        "preco": 34.00,
-        "ingredientes": ("massa", "molho de tomate", "muçarela", "manjericão")
-    },
-    {
-        "id": 4,
-        "nome": "Risoto de Cogumelos",
-        "preco": 100.80,
-        "ingredientes": ("arroz arbório", "champignon", "parmesão", "cebola", "creme de leite")
-    },
-    {
-        "id": 19,
-        "nome": "Hambúrguer Artesanal",
-        "preco": 27.50,
-        "ingredientes": ("pão brioche", "carne angus", "queijo cheddar", "alface", "tomate", "maionese caseira")
-    }
-]
 fila_pedidos = deque()
 
-def cadastrar_Cliente():
-    atulizar_contador_cliente()
+# def cadastrar_Cliente():
+#     atulizar_contador_cliente()
 
-    while True:
-        nome = input("Nome do Cliente: ").strip ()
-        if nome:
-            break
-        else:
-            print("Nome do Cliente não pode ser vazio.")
+#     while True:
+#         nome = input("Nome do Cliente: ").strip ()
+#         if nome:
+#             break
+#         else:
+#             print("Nome do Cliente não pode ser vazio.")
     
-    cliente = Cliente(nome)
-    clientes.append({
-        "id": cliente.id,
-        "nome": cliente.nome,
-        "pedidos": cliente.pedidos
-    })
+#     cliente = Cliente(nome)
+#     clientes.append({
+#         "id": cliente.id,
+#         "nome": cliente.nome,
+#         "pedidos": cliente.pedidos
+#     })
 
-def atulizar_contador_cliente():
-    if clientes:
-        maior_id = max(i["id"] for i in clientes)
-        Cliente.contador_id = maior_id
+# def atulizar_contador_cliente():
+#     if clientes:
+#         maior_id = max(i["id"] for i in clientes)
+#         Cliente.contador_id = maior_id
 
-def atualizar_contador_prato():
-    if pratos:
-        maior_id = max(i["id"] for i in pratos)
-        Prato.contador_id = maior_id
+# def atualizar_contador_prato():
+#     if pratos:
+#         maior_id = max(i["id"] for i in pratos)
+#         Prato.contador_id = maior_id
 
-def cadastrar_Prato():
-    atualizar_contador_prato()
+# def cadastrar_Prato():
+    # atualizar_contador_prato()
 
-    while True:
-        nome = input("Nome do Prato: ").strip()
-        if nome:
-            break
-        else:
-            print("O nome do Prato não pode ser vazio.")
+    # while True:
+    #     nome = input("Nome do Prato: ").strip()
+    #     if nome:
+    #         break
+    #     else:
+    #         print("O nome do Prato não pode ser vazio.")
     
 
-    while True:
-        preco_string = input("Preço: ").strip()
+    # while True:
+    #     preco_string = input("Preço: ").strip()
         
-        try:
-            preco = float(preco_string)
-            if preco >0:
-                break
-            else:
-                print("O preço do Prato deve ser maior que zero")
-        except ValueError:
-            print("Preço digitado inválido. Digite algo semelhante a '10.99' ")
+    #     try:
+    #         preco = float(preco_string)
+    #         if preco >0:
+    #             break
+    #         else:
+    #             print("O preço do Prato deve ser maior que zero")
+    #     except ValueError:
+    #         print("Preço digitado inválido. Digite algo semelhante a '10.99' ")
             
-    print("Digite os ingredientes, quando acabar digite 'Sair'")
+    # print("Digite os ingredientes, quando acabar digite 'Sair'")
 
-    ingredientes = [] 
-    while True:
-            ingrediente = input(":").strip()
-            if ingrediente.lower() == "sair":
-                break
-            if ingrediente == "":
-                print("O nome do ingrediente não pode ser vazio.")
-                continue
-            ingredientes.append(ingrediente)
+    # ingredientes = [] 
+    # while True:
+    #         ingrediente = input(":").strip()
+    #         if ingrediente.lower() == "sair":
+    #             break
+    #         if ingrediente == "":
+    #             print("O nome do ingrediente não pode ser vazio.")
+    #             continue
+    #         ingredientes.append(ingrediente)
 
     
-    ingredientes = tuple(ingredientes)
+    # ingredientes = tuple(ingredientes)
 
-    prato = Prato(nome, preco, ingredientes)
-    pratos.append(
-        {
-            "id": prato.id,
-            "nome": prato.nome,
-            "preco": prato.preco,
-            "ingredientes": prato.ingredientes
-        }
-    )
+    # prato = Prato(nome, preco, ingredientes)
+    # pratos.append(
+    #     {
+    #         "id": prato.id,
+    #         "nome": prato.nome,
+    #         "preco": prato.preco,
+    #         "ingredientes": prato.ingredientes
+    #     }
+    # )
 
-def cadastrar_Pedido():
-    print("Escolha um cliente para fazer este pedido")
-    listar_Clientes()
+# def cadastrar_Pedido():
+#     print("Escolha um cliente para fazer este pedido")
+#     listar_Clientes()
 
-    idCliente = input("Id: ")
-    print("Escolha os Pratos do Pedido - Digite 'Sair' para finalizar")
+#     idCliente = input("Id: ")
+#     print("Escolha os Pratos do Pedido - Digite 'Sair' para finalizar")
 
-    idPrato = ""
-    escolhidos = []
+#     idPrato = ""
+#     escolhidos = []
 
-    while idPrato.lower() != "sair":
-        listar_Pratos()
-        idPrato = input("Id: ")
+#     while idPrato.lower() != "sair":
+#         listar_Pratos()
+#         idPrato = input("Id: ")
 
-        if idPrato.lower() != "sair":
-            for i in pratos:
-                if i['id'] == int(idPrato):
-                    escolhidos.append({
-                        "nome": i['nome'],
-                        "preco": i["preco"]
-                    })
+#         if idPrato.lower() != "sair":
+#             for i in pratos:
+#                 if i['id'] == int(idPrato):
+#                     escolhidos.append({
+#                         "nome": i['nome'],
+#                         "preco": i["preco"]
+#                     })
 
-    cliente = None
-    for i in clientes:
-        if i["id"] == int(idCliente):
-            cliente = Cliente(i["nome"])
+#     cliente = None
+#     for i in clientes:
+#         if i["id"] == int(idCliente):
+#             cliente = Cliente(i["nome"])
 
-    pedido = Pedido(cliente, escolhidos)
-    fila_pedidos.append(pedido)
+#     pedido = Pedido(cliente, escolhidos)
+#     fila_pedidos.append(pedido)
 
-    print("Pedido feito com sucesso!")
-    posicao = list(fila_pedidos).index(pedido)
-    if fila_pedidos.count == 1:
-        print("Há 0 Pedidos na frente, logo poderá ser retirado!")
-    else:
-        print(f"Há {posicao} Pedidos na frete, aguarde e logo poderá ser retirado.")
+#     print("Pedido feito com sucesso!")
+#     posicao = list(fila_pedidos).index(pedido)
+#     if fila_pedidos.count == 1:
+#         print("Há 0 Pedidos na frente, logo poderá ser retirado!")
+#     else:
+#         print(f"Há {posicao} Pedidos na frete, aguarde e logo poderá ser retirado.")
 
 
-def listar_Clientes():
-    print("╔════╦════════════════════════╗")
-    print("║ ID ║ Nome                   ║")
-    print("╠════╬════════════════════════╣")
-    for c in clientes:
-        print(f"║ {c['id']:<2} ║ {c['nome']:<22} ║")
-    print("╚════╩════════════════════════╝")
+# def listar_Clientes():
+#     print("╔════╦════════════════════════╗")
+#     print("║ ID ║ Nome                   ║")
+#     print("╠════╬════════════════════════╣")
+#     for c in clientes:
+#         print(f"║ {c['id']:<2} ║ {c['nome']:<22} ║")
+#     print("╚════╩════════════════════════╝")
 
-def listar_Pratos():
-    print("╔══════╦══════════════════════════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
-    print("║ ID   ║ Nome                                     ║ Preço      ║ Ingredientes                                                                          ║")
-    print("╠══════╬══════════════════════════════════════════╬════════════╬═══════════════════════════════════════════════════════════════════════════════════════╣")
-    for c in pratos:
-        ingredientes_str = ", ".join(c["ingredientes"])
-        print(f"║ {str(c['id']):<4} ║ {c['nome']:<40} ║ R$ {float(c['preco']):<7.2f} ║ {ingredientes_str:<85} ║")
-    print("╚══════╩══════════════════════════════════════════╩════════════╩═══════════════════════════════════════════════════════════════════════════════════════╝")
+# def listar_Pratos():
+#     print("╔══════╦══════════════════════════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
+#     print("║ ID   ║ Nome                                     ║ Preço      ║ Ingredientes                                                                          ║")
+#     print("╠══════╬══════════════════════════════════════════╬════════════╬═══════════════════════════════════════════════════════════════════════════════════════╣")
+#     for c in pratos:
+#         ingredientes_str = ", ".join(c["ingredientes"])
+#         print(f"║ {str(c['id']):<4} ║ {c['nome']:<40} ║ R$ {float(c['preco']):<7.2f} ║ {ingredientes_str:<85} ║")
+#     print("╚══════╩══════════════════════════════════════════╩════════════╩═══════════════════════════════════════════════════════════════════════════════════════╝")
 
-def retirar_proximo_pedido():
-    if fila_pedidos:
-        pedido = fila_pedidos.popleft()
-        pratos_string = ', '.join([p["nome"] for p in pedido.pratos])
-        print("╔════════════════════════════════════════════════╗")
-        print("║               Pedido retirado!                 ║")
-        print("╚════════════════════════════════════════════════╝")
-        print("╔══════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
-        print("║ Nome                 ║ Preço      ║ Pratos                                                                                ║")
-        print("╠══════════════════════║════════════║═══════════════════════════════════════════════════════════════════════════════════════╣")
-        print(f"║ {pedido.cliente.nome:<21}║ R${pedido.valor_total:<9}║ {pratos_string:<90} ║")
-        print("╚══════════════════════╩════════════╩════════════════════════════════════════╝")
-    else:
-        print("Não há pedidos para serem retirados. :(")
+# def retirar_proximo_pedido():
+#     if fila_pedidos:
+#         pedido = fila_pedidos.popleft()
+#         pratos_string = ', '.join([p["nome"] for p in pedido.pratos])
+#         print("╔════════════════════════════════════════════════╗")
+#         print("║               Pedido retirado!                 ║")
+#         print("╚════════════════════════════════════════════════╝")
+#         print("╔══════════════════════╦════════════╦═══════════════════════════════════════════════════════════════════════════════════════╗")
+#         print("║ Nome                 ║ Preço      ║ Pratos                                                                                ║")
+#         print("╠══════════════════════║════════════║═══════════════════════════════════════════════════════════════════════════════════════╣")
+#         print(f"║ {pedido.cliente.nome:<21}║ R${pedido.valor_total:<9}║ {pratos_string:<90} ║")
+#         print("╚══════════════════════╩════════════╩════════════════════════════════════════╝")
+#     else:
+#         print("Não há pedidos para serem retirados. :(")
 
 def menu_Principal():
     i = True
@@ -201,9 +164,7 @@ def menu_Principal():
 5 - Remover Prato
 6 - Fazer pedido
 7 - Retirar próximo Pedido
-8 - Null
-9 - Null 
-10 - Sair
+q - Sair
 ====================
                     """)
         print(" ")
@@ -229,7 +190,7 @@ def menu_Principal():
         elif escolha == "7":
             retirar_proximo_pedido()
 
-        elif escolha == "10":
+        elif escolha == "q":
             i = False
 
 
