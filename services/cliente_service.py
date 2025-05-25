@@ -36,3 +36,9 @@ def buscar_cliente_por_id(id_cliente: int):
         if cliente.id == id_cliente:
             return cliente
     return None
+
+def verificar_cliente_existente(id_cliente: int):
+    for cliente in clientes:
+        if cliente["id"] == id_cliente:
+            return True
+    return False
