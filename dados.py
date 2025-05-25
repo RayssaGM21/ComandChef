@@ -1,3 +1,6 @@
+from collections import deque
+from estruturas.linked_list import LinkedList
+
 clientes = [
     {"id": 1, "nome": "Matheus", "pedidos": []},
     {"id": 2, "nome": "Rayssa", "pedidos": []},
@@ -36,3 +39,5 @@ pratos = [
         "ingredientes": ("pão brioche", "carne angus", "queijo cheddar", "alface", "tomate", "maionese caseira")
     }
 ]
+
+fila_pedidos = deque()
