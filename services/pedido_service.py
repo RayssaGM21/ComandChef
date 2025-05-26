@@ -5,6 +5,7 @@ from .prato_service import listar_pratos
 from dados import clientes, fila_pedidos
 from dados import pratos
 from tabulate import tabulate
+import time
 
 
 
@@ -89,6 +90,8 @@ def retirar_proximo_pedido():
         cabecalho = ["Nome", "Preço", "Pratos"]
         colalign = ('left', 'right', 'left')
         
+        simular_preparo(pedido.pratos)
+
         print("╔════════════════════════════════════════════════╗")
         print("║               Pedido retirado!                 ║")
         print("╚════════════════════════════════════════════════╝")
@@ -131,3 +134,16 @@ def exibir_pedido(pedido: Pedido):
     print(f"Cliente: {pedido.cliente.nome}")
     print("Pratos escolhidos:")
     print(tabulate(dados, headers=cabecalho, tablefmt="fancy_grid", colalign=colalign))
+
+
+def simular_preparo(pedido):
+
+    print("Preparando o pedido de {pedido.cliente.nome}")
+    time.sleep(2)
+    for prato in pedido.pratos:
+        for i in prato:
+            print("Preparando {pedido.pratos.ingredientes[i]}")
+            time.sleep(2)
+    print("Colocando tudo no seu devido lugar e.......... PRONTO")
+
+
