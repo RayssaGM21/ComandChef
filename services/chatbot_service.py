@@ -39,7 +39,7 @@ def busca_modelo_disponivel():
     return None
 
 
-def iniciar_chatbot_restaurante(pratos_data, clientes_data, fila_pedidos_data):
+def iniciar_chatchef(pratos_data, clientes_data, fila_pedidos_data, pratos_em_promocao):
     API_KEY = os.getenv("GOOGLE_API_KEY")
 
     if not API_KEY:
@@ -77,6 +77,9 @@ def iniciar_chatbot_restaurante(pratos_data, clientes_data, fila_pedidos_data):
 
     **FILA DE PEDIDOS:**
     {fila_pedidos_str}
+
+    **PRATOS EM PROMOÇÃO:**
+    {pratos_em_promocao}
 
     Responda às perguntas usando apenas as informações fornecidas e seja útil ao cliente. 
     Fique atento a possíveis alergêncos presentes nos ingredientes dos pratos fornecidos e procure a tabela nutricional dos alimentos caso necessário!
