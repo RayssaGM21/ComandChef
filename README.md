@@ -87,9 +87,9 @@ Para executar o Command Chef, siga os passos abaixo:
       - Crie uma nova chave de API. Copie-a imediatamente, pois ela só será mostrada uma vez.
   
   5.  **Execute o sistema:**
-    ```bash
+
     python main.py
-    ```
+
 
 ## Conheça o CommandChef
 
