@@ -46,7 +46,8 @@ def cadastrar_pedido():
                 if prato["id"] == id_prato_int:
                     escolhidos.append({
                         "nome": prato["nome"],
-                        "preco": prato["preco"]
+                        "preco": prato["preco"],
+                        "ingredientes": prato["ingredientes"]
                     })
                     prato_valido = True
                     break
@@ -89,8 +90,10 @@ def retirar_proximo_pedido():
         dados = [[pedido.cliente.nome, f"R$ {pedido.valor_total:.2f}", pratos_string]]
         cabecalho = ["Nome", "Preço", "Pratos"]
         colalign = ('left', 'right', 'left')
-        
-        simular_preparo(pedido.pratos)
+        for p in pedido.pratos:
+            print(p)
+
+        simular_preparo(pedido)
 
         print("╔════════════════════════════════════════════════╗")
         print("║               Pedido retirado!                 ║")
@@ -138,11 +141,11 @@ def exibir_pedido(pedido: Pedido):
 
 def simular_preparo(pedido):
 
-    print("Preparando o pedido de {pedido.cliente.nome}")
+    print(f"Preparando o pedido de {pedido.cliente.nome}")
     time.sleep(2)
     for prato in pedido.pratos:
-        for i in prato:
-            print("Preparando {pedido.pratos.ingredientes[i]}")
+        for i in prato['ingredientes']:
+            print(f"Colocando/Preparando {i}")
             time.sleep(2)
     print("Colocando tudo no seu devido lugar e.......... PRONTO")
 
