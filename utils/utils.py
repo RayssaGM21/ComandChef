@@ -40,7 +40,6 @@ def exibir_opcoes():
         ["8", "Ver fila de pedidos"],
         ["9", "Gerenciar promoções"],
         ["10", "Converse com o ChatChefBot"],
-        ["b", "Voltar à Tela Anterior"],
         ["q", "Sair"]
     ]
 
