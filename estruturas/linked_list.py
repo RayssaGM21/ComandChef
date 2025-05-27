@@ -19,11 +19,13 @@ class LinkedList:
     def __init__(self, initial_data: list = None):
         self.head = None
         self._size = 0
+        self._next_id = 1 
 
         # add dados iniciais
         if initial_data:
             for item_data in initial_data:
                 self.add_last(Node(item_data))
+            self._recalcula_next_id()
 
     def __iter__(self):
         node = self.head
@@ -82,7 +84,22 @@ class LinkedList:
 
         return None
     
-    def to_json(self, indent=2):
+    def _recalcula_next_id(self):
+        max_id = 0
+        for node in self:
+            if node.data and isinstance(node.data, dict) and 'id' in node.data:
+                current_item_id = node.data['id']
+                if current_item_id > max_id:
+                    max_id = current_item_id
+        self._next_id = max_id + 1
+
+    def proximo_id(self) -> int:
+        current_id = self._next_id
+        self._next_id += 1
+
+        return current_id
+
+    def to_json(self, indent=2) -> str:
         data_list = []
 
         for node in self:
