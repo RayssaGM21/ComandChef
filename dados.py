@@ -41,3 +41,8 @@ pratos = [
 ]
 
 fila_pedidos = deque()
+
+pratos_em_promocao = LinkedList([
+    {"id": 101, "nome": "Combo Hambúrguer + Batata + Refri", "preco_promocional": 30.00, "original_id": 19},
+    {"id": 102, "nome": "Pizza Margherita G - 20% OFF", "preco_promocional": 27.20, "original_id": 3},
+])
