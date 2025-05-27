@@ -1,6 +1,7 @@
 # Command Chef: Sistema de Gerenciamento de Restaurante CLI
 
 Este é um sistema de gerenciamento de restaurante baseado em linha de comando (CLI) desenvolvido em Python. 
+
 O **Command Chef** permite cadastrar clientes, pratos, gerenciar pedidos, e até mesmo interagir com um ChatBot inteligente para dúvidas sobre o menu e fila dos pedidos.
 
 ## Integrantes do Grupo
