@@ -3,7 +3,7 @@ import platform
 from tabulate import tabulate
 from services.chatbot_service import iniciar_chatchef
 from services.cliente_service import cadastrar_cliente, listar_clientes
-from services.pedido_service import cadastrar_pedido, listar_fila, retirar_proximo_pedido
+from services.pedido_service import cadastrar_pedido, listar_fila, retirar_proximo_pedido, voltar_ao_ultimo_pedido_visualizado
 from services.prato_service import cadastrar_prato, listar_pratos, remover_prato
 from services.promo_service import menu_promo
 from dados import pratos, clientes, fila_pedidos, pratos_em_promocao
@@ -39,7 +39,8 @@ def exibir_opcoes():
         ["7", "Remover Prato"],
         ["8", "Ver fila de pedidos"],
         ["9", "Gerenciar promoções"],
-        ["10", "Converse com o ChatChefBot"],
+        ["10", "Voltar ao Último Pedido Visualizado"],
+        ["11", "Converse com o ChatChefBot"],
         ["q", "Sair"]
     ]
 
@@ -78,7 +79,11 @@ def menu_principal():
                 listar_fila()
             case "9":
                 menu_promo()
+            case "9":
+                menu_promo()
             case "10":
+                voltar_ao_ultimo_pedido_visualizado()
+            case "11":
                 iniciar_chatchef(pratos, clientes, fila_pedidos, pratos_em_promocao.to_json())
             case "q":
                 print("Saindo do sistema...")

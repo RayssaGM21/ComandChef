@@ -2,8 +2,7 @@ from entidades.pedido import Pedido
 from entidades.cliente import Cliente
 from .cliente_service import listar_clientes, verificar_cliente_existente
 from .prato_service import listar_pratos
-from dados import clientes, fila_pedidos
-from dados import pratos
+from dados import clientes, fila_pedidos, pratos, historico_pedidos_retirados, pedidos_visitados_recentemente
 from tabulate import tabulate
 import time
 
@@ -100,6 +99,7 @@ def retirar_proximo_pedido():
         print("╚════════════════════════════════════════════════╝")
         
         print(tabulate(dados, headers=cabecalho, tablefmt="fancy_grid", colalign=colalign))
+        historico_pedidos_retirados.append(pedido)
         
     else:
         print("Não há pedidos para serem retirados. :(")
@@ -137,6 +137,7 @@ def exibir_pedido(pedido: Pedido):
     print(f"Cliente: {pedido.cliente.nome}")
     print("Pratos escolhidos:")
     print(tabulate(dados, headers=cabecalho, tablefmt="fancy_grid", colalign=colalign))
+    pedidos_visitados_recentemente.append(pedido)
 
 
 def simular_preparo(pedido):
@@ -150,3 +151,14 @@ def simular_preparo(pedido):
     print("Colocando tudo no seu devido lugar e.......... PRONTO")
 
 
+def voltar_ao_ultimo_pedido_visualizado():
+    if len(pedidos_visitados_recentemente) > 1:
+        pedido_atual = pedidos_visitados_recentemente.pop()
+        ultimo_pedido = pedidos_visitados_recentemente[-1] 
+        print("Voltando ao último pedido visualizado...")
+        exibir_pedido(ultimo_pedido)
+
+    elif len(pedidos_visitados_recentemente) == 1:
+        print("Você está visualizando o primeiro pedido do histórico. Não há para onde voltar.")
+    else:
+        print("Não há pedidos no histórico de visualização para voltar.")
