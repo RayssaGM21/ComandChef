@@ -1,11 +1,12 @@
 import os
 import platform
 from tabulate import tabulate
-from services.chatbot_service import iniciar_chatbot_restaurante
+from services.chatbot_service import iniciar_chatchef
 from services.cliente_service import cadastrar_cliente, listar_clientes
 from services.pedido_service import cadastrar_pedido, listar_fila, retirar_proximo_pedido
 from services.prato_service import cadastrar_prato, listar_pratos, remover_prato
-from dados import pratos, clientes, fila_pedidos
+from services.promo_service import menu_promo
+from dados import pratos, clientes, fila_pedidos, pratos_em_promocao, historico_telas
 
 
 def limpar_terminal():
@@ -37,7 +38,9 @@ def exibir_opcoes():
         ["6", "Retirar Próximo Pedido"],
         ["7", "Remover Prato"],
         ["8", "Ver fila de pedidos"],
-        ["9", "Converse com o ChatChefBot"],
+        ["9", "Gerenciar promoções"],
+        ["10", "Converse com o ChatChefBot"],
+        ["b", "Voltar à Tela Anterior"],
         ["q", "Sair"]
     ]
 
@@ -51,10 +54,10 @@ def continuar():
     limpar_terminal()
 
 
-def menu_principal():
+def menu_principal():  
     while True:
         exibir_opcoes()
-        escolha = input("\nDigite a opção desejada: ")
+        escolha = input("\nDigite a opção desejada: ").strip().lower()
 
         match escolha:
             case "1":
@@ -75,7 +78,9 @@ def menu_principal():
             case "8":
                 listar_fila()
             case "9":
-                iniciar_chatbot_restaurante(pratos, clientes, fila_pedidos)
+                menu_promo()
+            case "10":
+                iniciar_chatchef(pratos, clientes, fila_pedidos, pratos_em_promocao.to_json())
             case "q":
                 print("Saindo do sistema...")
                 break
