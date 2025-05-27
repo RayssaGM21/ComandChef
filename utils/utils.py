@@ -6,7 +6,7 @@ from services.cliente_service import cadastrar_cliente, listar_clientes
 from services.pedido_service import cadastrar_pedido, listar_fila, retirar_proximo_pedido
 from services.prato_service import cadastrar_prato, listar_pratos, remover_prato
 from services.promo_service import menu_promo
-from dados import pratos, clientes, fila_pedidos, pratos_em_promocao, historico_telas
+from dados import pratos, clientes, fila_pedidos, pratos_em_promocao
 
 
 def limpar_terminal():
