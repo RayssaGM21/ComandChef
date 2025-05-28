@@ -127,3 +127,6 @@ Durante o desenvolvimento do Command Chef, diversas estruturas de dados foram ap
 
 * **Listas Encadeadas (simples):**
     * A `pratos_em_promocao` é gerenciada por uma `LinkedList` personalizada. A Lista Encadeada foi escolhida para demonstrar o conhecimento de uma estrutura de dados fundamental, onde os elementos são conectados por referências (ponteiros). Para promoções, isso é útil devido a necessidade de inserções/remoções frequentes de uma lista em constante mudança, sem o custo de realocação de memória de uma lista dinâmica baseada em array.
+
+## Fluxograma
+![Fluxograma](fluxograma.svg)
