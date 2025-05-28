@@ -6,7 +6,7 @@ from services.cliente_service import cadastrar_cliente, listar_clientes
 from services.pedido_service import cadastrar_pedido, listar_fila, retirar_proximo_pedido, voltar_ao_ultimo_pedido_visualizado
 from services.prato_service import cadastrar_prato, listar_pratos, remover_prato
 from services.promo_service import menu_promo
-from dados import pratos, clientes, fila_pedidos, pratos_em_promocao
+from dados import pratos, clientes, fila_pedidos, pratos_em_promocao, historico_pedidos_retirados
 
 
 def limpar_terminal():
@@ -84,7 +84,7 @@ def menu_principal():
             case "10":
                 voltar_ao_ultimo_pedido_visualizado()
             case "11":
-                iniciar_chatchef(pratos, clientes, fila_pedidos, pratos_em_promocao.to_json())
+                iniciar_chatchef(pratos, clientes, fila_pedidos, pratos_em_promocao.to_json(), historico_pedidos_retirados)
             case "q":
                 print("Saindo do sistema...")
                 break

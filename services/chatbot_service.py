@@ -39,7 +39,7 @@ def busca_modelo_disponivel():
     return None
 
 
-def iniciar_chatchef(pratos_data, clientes_data, fila_pedidos_data, pratos_em_promocao):
+def iniciar_chatchef(pratos_data, clientes_data, fila_pedidos_data, pratos_em_promocao, historico_pedidos_retirados):
     API_KEY = os.getenv("GOOGLE_API_KEY")
 
     if not API_KEY:
@@ -60,6 +60,8 @@ def iniciar_chatchef(pratos_data, clientes_data, fila_pedidos_data, pratos_em_pr
     clientes_str = json.dumps(clientes_data, ensure_ascii=False, indent=2)
     fila_pedidos_serializavel = [pedido.to_dict() for pedido in fila_pedidos_data]
     fila_pedidos_str = json.dumps(fila_pedidos_serializavel, ensure_ascii=False, indent=2)
+    historico_pedidos_retirados_serializavel = [pedido.to_dict() for pedido in historico_pedidos_retirados]
+    historico_pedidos_retirados_str = json.dumps(historico_pedidos_retirados_serializavel, ensure_ascii=False, indent=2)
 
 
     prompt_inicial = f"""
@@ -80,6 +82,9 @@ def iniciar_chatchef(pratos_data, clientes_data, fila_pedidos_data, pratos_em_pr
 
     **PRATOS EM PROMOÇÃO:**
     {pratos_em_promocao}
+
+    **HISTÓRICO DE PEDIDOS JÁ RETIRADOS:**
+    {historico_pedidos_retirados_str}
 
     Responda às perguntas usando apenas as informações fornecidas e seja útil ao cliente. 
     Fique atento a possíveis alergêncos presentes nos ingredientes dos pratos fornecidos e procure a tabela nutricional dos alimentos caso necessário!
