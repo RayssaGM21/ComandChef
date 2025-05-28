@@ -8,9 +8,9 @@ O **Command Chef** permite cadastrar clientes, pratos, gerenciar pedidos, e até
 
 | Nome Completo | RA |
 | ---------------------- | ------ |
-| Matheus Gomes Pedroza | Add 1998912 |
+| Matheus Gomes Pedroza | 1998912 |
 | Rayssa Gomides Marconato | 2001130 |
-| Rodrigo Garcia Bassalobre | Add RA |
+| Rodrigo Garcia Bassalobre | 2007642 |
 
 ## Requisitos de Execução
 
