@@ -115,6 +115,7 @@ Durante o desenvolvimento do Command Chef, diversas estruturas de dados foram ap
 * **Listas (Pilhas e Filas):**
     * **Listas comuns:** Utilizadas para armazenar coleções de `clientes` e `pratos` (`dados.py`). A escolha de listas é natural para armazenar conjuntos de itens que podem ser iterados e acessados por índice, além de facilitar a adição e remoção.
     * **Fila (`collections.deque`):** A `fila_pedidos` é implementada com `deque`, uma estrutura otimizada para operações de adicionar e remover em ambas as extremidades. Isso é essencial para um sistema de pedidos, onde o primeiro pedido a ser feito deve ser o primeiro a ser processado (FIFO - First-In, First-Out).
+    * **Pilha** histórico de pedidos visitados recentemente (pedidos_visitados_recentemente) é implementado usando uma lista comum do Python, mas operando como uma pilha (LIFO - Last-In, First-Out).
 
 * **Tuplas:**
     * Os `ingredientes` de cada `Prato` são armazenados como tuplas. A natureza imutável das tuplas é ideal para dados que não devem ser alterados após a criação, como a composição de um prato. Isso garante a integridade dos dados e pode oferecer pequenas otimizações de performance e segurança.
