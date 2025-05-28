@@ -89,8 +89,6 @@ def retirar_proximo_pedido():
         dados = [[pedido.cliente.nome, f"R$ {pedido.valor_total:.2f}", pratos_string]]
         cabecalho = ["Nome", "Preço", "Pratos"]
         colalign = ('left', 'right', 'left')
-        for p in pedido.pratos:
-            print(p)
 
         simular_preparo(pedido)
 
