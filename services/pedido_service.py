@@ -124,7 +124,7 @@ def listar_fila():
     print(tabulate(dados, headers=cabecalho, tablefmt="fancy_grid", colalign=colalign))
 
 
-def exibir_pedido(pedido: Pedido):
+def exibir_pedido(pedido: Pedido, add_historico=True):
     dados = []
     for prato in pedido.pratos:
         dados.append([prato['nome'], f"R${prato['preco']:.2f}"])
@@ -137,7 +137,8 @@ def exibir_pedido(pedido: Pedido):
     print(f"Cliente: {pedido.cliente.nome}")
     print("Pratos escolhidos:")
     print(tabulate(dados, headers=cabecalho, tablefmt="fancy_grid", colalign=colalign))
-    pedidos_visitados_recentemente.append(pedido)
+    if add_historico:
+        pedidos_visitados_recentemente.append(pedido)
 
 
 def simular_preparo(pedido):
@@ -152,13 +153,9 @@ def simular_preparo(pedido):
 
 
 def voltar_ao_ultimo_pedido_visualizado():
-    if len(pedidos_visitados_recentemente) > 1:
+    if len(pedidos_visitados_recentemente) >= 1:
         pedido_atual = pedidos_visitados_recentemente.pop()
-        ultimo_pedido = pedidos_visitados_recentemente[-1] 
         print("Voltando ao último pedido visualizado...")
-        exibir_pedido(ultimo_pedido)
-
-    elif len(pedidos_visitados_recentemente) == 1:
-        print("Você está visualizando o primeiro pedido do histórico. Não há para onde voltar.")
+        exibir_pedido(pedido_atual, False)  
     else:
         print("Não há pedidos no histórico de visualização para voltar.")
